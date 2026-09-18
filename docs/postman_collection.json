@@ -1,0 +1,130 @@
+{
+  "info": {
+    "name": "Civic Issue Reporting Platform API",
+    "description": "Production REST API collection for Smart Civic Issue Reporting Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "User Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"pradeepa@gmail.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "User Registration",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Pradeepa\",\n  \"email\": \"pradeepa@gmail.com\",\n  \"password\": \"password123\",\n  \"mobile\": \"8122671800\",\n  \"role\": \"ROLE_CITIZEN\",\n  \"district\": \"Coimbatore\",\n  \"city\": \"Coimbatore\",\n  \"state\": \"Tamil Nadu\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Complaints",
+      "item": [
+        {
+          "name": "Get All Complaints",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/complaints",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "complaints"]
+            }
+          }
+        },
+        {
+          "name": "Submit Complaint (Form Data)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Pothole on 5th Street",
+                  "type": "text"
+                },
+                {
+                  "key": "category",
+                  "value": "Roads & Potholes",
+                  "type": "text"
+                },
+                {
+                  "key": "locationAddress",
+                  "value": "Gandhipuram, Coimbatore",
+                  "type": "text"
+                },
+                {
+                  "key": "district",
+                  "value": "Coimbatore",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/complaints",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "complaints"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "jwtToken",
+      "value": ""
+    }
+  ]
+}

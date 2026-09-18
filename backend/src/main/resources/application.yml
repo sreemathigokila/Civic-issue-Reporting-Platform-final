@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: civic-connect-backend
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:oracle:thin:@localhost:1521:XE}
+    username: ${SPRING_DATASOURCE_USERNAME:civic_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:civic_password}
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  jpa:
+    database-platform: org.hibernate.dialect.OracleDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+app:
+  jwt:
+    secret: 9266966545388243656A6F4E3978324164644538476B6B5664566F5970337336
+    expiration-ms: 86400000 # 24 hours
+    refresh-expiration-ms: 604800000 # 7 days
+
+openai:
+  api-key: ${OPENAI_API_KEY:mock-key-for-local-demo}
+
+cloudinary:
+  cloud-name: ${CLOUDINARY_CLOUD_NAME:demo}
+  api-key: ${CLOUDINARY_API_KEY:123456789}
+  api-secret: ${CLOUDINARY_API_SECRET:demo-secret}
+
+fcm:
+  server-key: ${FCM_SERVER_KEY:demo-fcm-server-key}

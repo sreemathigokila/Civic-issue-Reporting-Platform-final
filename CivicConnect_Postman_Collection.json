@@ -1,0 +1,633 @@
+{
+  "info": {
+    "_postman_id": "civicconnect-api-collection-v2",
+    "name": "CivicConnect Complete API Collection",
+    "description": "Complete Postman collection for CivicConnect Civic Issue Reporting Platform. Includes authentication, citizen complaint submission, department head workflow, worker task assignment, status updates, notifications, and admin endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api",
+      "type": "string"
+    },
+    {
+      "key": "adminToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "deptHeadToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "workerToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "citizenToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "complaintId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "workerId",
+      "value": "21",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "Login - Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@civicconnect.gov.in\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login - Dept Head (Coimbatore Road)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"coimbatore.road.head@civicconnect.gov.in\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login - Field Worker (Coimbatore Road)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"coimbatore.road.worker@civicconnect.gov.in\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login - Citizen (Sanjay)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"sanjay@gmail.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Register - New Citizen",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"New Citizen User\",\n  \"email\": \"newcitizen@gmail.com\",\n  \"password\": \"password123\",\n  \"mobile\": \"9876500001\",\n  \"role\": \"CITIZEN\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Citizen Operations",
+      "item": [
+        {
+          "name": "Submit Complaint (JSON)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{citizenToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Large Pothole on Avinashi Road\",\n  \"category\": \"Road Maintenance\",\n  \"description\": \"Dangerous pothole causing traffic slowdown near Hope College junction.\",\n  \"districtName\": \"Coimbatore\",\n  \"locationAddress\": \"Avinashi Road, Hope College, Coimbatore\",\n  \"latitude\": 11.028,\n  \"longitude\": 77.001\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/complaints",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "complaints"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get My Submitted Complaints",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{citizenToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/complaints/my",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "complaints",
+                "my"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Citizen Review Complaint (Approve / Request Rework)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{citizenToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"approved\": true,\n  \"feedback\": \"Great job fixing the road!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/complaints/{{complaintId}}/citizen-review",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "complaints",
+                "{{complaintId}}",
+                "citizen-review"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Department Head Operations",
+      "item": [
+        {
+          "name": "Get Dept Head Complaints Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{deptHeadToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/complaints/depthead",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "complaints",
+                "depthead"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Available Field Workers for Assignment",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{deptHeadToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/complaints/workers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "complaints",
+                "workers"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Assign Complaint to Field Worker",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{deptHeadToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/complaints/{{complaintId}}/assign?workerId={{workerId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "complaints",
+                "{{complaintId}}",
+                "assign"
+              ],
+              "query": [
+                {
+                  "key": "workerId",
+                  "value": "{{workerId}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Field Worker Operations",
+      "item": [
+        {
+          "name": "Get My Worker Assigned Tasks",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{workerToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/complaints/worker",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "complaints",
+                "worker"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Worker Task Status & Resolution Proof",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{workerToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"SUBMITTED_FOR_REVIEW\",\n  \"remarks\": \"Pothole filled with fresh asphalt and leveled successfully.\",\n  \"proofImageUrl\": \"https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?w=600\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/complaints/{{complaintId}}/worker-status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "complaints",
+                "{{complaintId}}",
+                "worker-status"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. In-App Notifications",
+      "item": [
+        {
+          "name": "Get My Notifications",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/my",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                "my"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Unread Notifications Count",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/unread-count",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                "unread-count"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Notification as Read",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/1/read",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                "1",
+                "read"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark All Notifications as Read",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/read-all",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                "read-all"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Admin & Master Data",
+      "item": [
+        {
+          "name": "Get All Complaints (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/complaints",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "complaints"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Complaint Detail by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/complaints/{{complaintId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "complaints",
+                "{{complaintId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Registered Citizens (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/citizens",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "citizens"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get System Complaint Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/complaints/stats",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "complaints",
+                "stats"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Departments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/departments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "departments"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Districts (38 TN Districts)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/districts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "districts"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
