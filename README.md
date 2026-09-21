@@ -2,7 +2,7 @@
 > **Smart India Hackathon (SIH 2025) Submission**  
 > **Problem Statement ID**: FSJ28-INTERN-004  
 > **Team Name**: NexaCity | **Institution**: Karpagam College of Engineering  
-> **Team Members**: Perianayagi Divya S (CSE II), Pradeepa T (CSE II), Sreemathi V (CSE II)
+> **Team Members**: Perianayagi Divya S (CSE III), Pradeepa T (CSE III), Sreemathi V (CSE III)
 
 ---
 
@@ -69,9 +69,9 @@ The React frontend will start at: `http://localhost:5173`.
 
 | Member Name | Branch & Year | Primary Responsibilities |
 | :--- | :---: | :--- |
-| **Perianayagi Divya S** | CSE II | **Frontend Lead**: React UI components, responsive layout, citizen & admin dashboard view. |
-| **Pradeepa T** | CSE II | **Backend & Database Lead**: Spring Boot microservices (`complaint-service`), REST API design, JPA entities, database management. |
-| **Sreemathi V** | CSE II | **AI Integration & Security Lead**: Python FastAPI AI engine, Google OAuth2 Gmail API integration, Email OTP verification flow, JWT security. |
+| **Perianayagi Divya S** | CSE III | **Frontend Lead**: React UI components, responsive layout, citizen & admin dashboard view. |
+| **Pradeepa T** | CSE III | **Backend & Database Lead**: Spring Boot microservices (`complaint-service`), REST API design, JPA entities, database management. |
+| **Sreemathi V** | CSE III | **AI Integration & Security Lead**: Python FastAPI AI engine, Google OAuth2 Gmail API integration, Email OTP verification flow, JWT security. |
 
 ---
 
