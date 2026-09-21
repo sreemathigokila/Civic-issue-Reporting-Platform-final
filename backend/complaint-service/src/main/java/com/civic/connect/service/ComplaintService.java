@@ -25,7 +25,6 @@ public class ComplaintService {
     private final UserRepository userRepository;
     private final AIAnalysisRepository aiAnalysisRepository;
     private final NotificationRepository notificationRepository;
-    private final SpringAiService aiService;
     private final PriorityClassificationService priorityClassificationService;
     private final NotificationDispatcherService notificationDispatcherService;
 
@@ -37,7 +36,6 @@ public class ComplaintService {
                             UserRepository userRepository,
                             AIAnalysisRepository aiAnalysisRepository,
                             NotificationRepository notificationRepository,
-                            SpringAiService aiService,
                             PriorityClassificationService priorityClassificationService,
                             NotificationDispatcherService notificationDispatcherService) {
         this.complaintRepository = complaintRepository;
@@ -48,7 +46,6 @@ public class ComplaintService {
         this.userRepository = userRepository;
         this.aiAnalysisRepository = aiAnalysisRepository;
         this.notificationRepository = notificationRepository;
-        this.aiService = aiService;
         this.priorityClassificationService = priorityClassificationService;
         this.notificationDispatcherService = notificationDispatcherService;
     }
@@ -149,19 +146,6 @@ public class ComplaintService {
             } catch (Exception e) {
                 System.err.println("Failed to send Department Head notification: " + e.getMessage());
             }
-        }
-
-        // Run AI Analysis asynchronously / safe
-        try {
-            AIAnalysis aiAnalysis = aiService.analyzeComplaint(complaint);
-            if (aiAnalysis != null) {
-                aiAnalysisRepository.save(aiAnalysis);
-                complaint.setPriority(aiAnalysis.getAssignedPriority());
-                complaint.setUrgency(aiAnalysis.getUrgencyLevel());
-                complaintRepository.save(complaint);
-            }
-        } catch (Exception e) {
-            // Log & keep complaint saving resilient
         }
 
         // Dispatch Multi-Channel Notifications (Push, Email, SMS)

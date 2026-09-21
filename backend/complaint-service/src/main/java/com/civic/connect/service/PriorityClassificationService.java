@@ -18,11 +18,11 @@ import java.util.List;
 @Service
 public class PriorityClassificationService {
 
-    @Value("${spring.ai.openai.api-key:${SPRING_AI_OPENAI_API_KEY:}}")
-    private String apiKey;
+	@Value("${openai.api-key:${OPENAI_API_KEY:}}")
+	private String apiKey;
 
-    @Value("${spring.ai.openai.model:gpt-3.5-turbo}")
-    private String modelName;
+	@Value("${openai.model:gpt-4o-mini}")
+	private String modelName;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final HttpClient httpClient = HttpClient.newBuilder()
@@ -31,7 +31,7 @@ public class PriorityClassificationService {
 
     /**
      * Main classification method: Analyzes a complaint using LLM prompt or fallback heuristics.
-     */
+     */ 
     public PriorityClassificationResult classifyPriority(Complaint complaint) {
         if (complaint == null) {
             return new PriorityClassificationResult("MEDIUM", 0.80, "Default fallback for null complaint");

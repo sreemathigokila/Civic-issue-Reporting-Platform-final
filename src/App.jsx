@@ -55,6 +55,7 @@ const citizenNav = [
 const workerNav = [
   { label: 'Dashboard', to: '/worker/dashboard', icon: LayoutDashboard },
   { label: 'My Tasks', to: '/worker/tasks', icon: ClipboardList },
+  { label: 'Notifications', to: '/worker/notifications', icon: Bell },
   { label: 'My Profile', to: '/worker/profile', icon: User },
   { label: 'Settings', to: '/worker/settings', icon: Settings },
 ];
@@ -62,6 +63,7 @@ const workerNav = [
 const deptHeadNav = [
   { label: 'Dashboard', to: '/depthead/dashboard', icon: LayoutDashboard },
   { label: 'Complaints', to: '/depthead/complaints', icon: FileText },
+  { label: 'Notifications', to: '/depthead/notifications', icon: Bell },
   { label: 'My Profile', to: '/depthead/profile', icon: User },
   { label: 'Settings', to: '/depthead/settings', icon: Settings },
 ];
@@ -73,6 +75,7 @@ const adminNav = [
   { label: 'Workers', to: '/admin/workers', icon: Wrench },
   { label: 'Citizens', to: '/admin/citizens', icon: Users },
   { label: 'Complaints', to: '/admin/complaints', icon: FileText },
+  { label: 'Notifications', to: '/admin/notifications', icon: Bell },
   { label: 'Admin Profile', to: '/admin/profile', icon: Shield },
   { label: 'Settings', to: '/admin/settings', icon: Settings },
 ];
@@ -109,6 +112,7 @@ export default function App() {
               <Route path="/worker/dashboard" element={<WorkerDashboard />} />
               <Route path="/worker/tasks" element={<WorkerTasks />} />
               <Route path="/worker/tasks/:id" element={<WorkerTaskDetail />} />
+              <Route path="/worker/notifications" element={<CitizenNotifications />} />
               <Route path="/worker/profile" element={<CitizenProfile />} />
               <Route path="/worker/settings" element={<CitizenSettings />} />
             </Route>
@@ -120,6 +124,7 @@ export default function App() {
               <Route path="/depthead/dashboard" element={<DeptHeadDashboard />} />
               <Route path="/depthead/complaints" element={<DeptHeadComplaints />} />
               <Route path="/depthead/complaints/:id" element={<DeptHeadComplaintDetail />} />
+              <Route path="/depthead/notifications" element={<CitizenNotifications />} />
               <Route path="/depthead/profile" element={<CitizenProfile />} />
               <Route path="/depthead/settings" element={<CitizenSettings />} />
             </Route>
@@ -135,6 +140,7 @@ export default function App() {
               <Route path="/admin/citizens" element={<AdminCitizens />} />
               <Route path="/admin/complaints" element={<AdminComplaints />} />
               <Route path="/admin/complaints/:id" element={<AdminComplaintDetail />} />
+              <Route path="/admin/notifications" element={<CitizenNotifications />} />
               <Route path="/admin/profile" element={<CitizenProfile />} />
               <Route path="/admin/settings" element={<CitizenSettings />} />
             </Route>
