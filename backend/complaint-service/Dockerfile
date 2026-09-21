@@ -2,19 +2,19 @@
 FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
 WORKDIR /app
 
-# Copy parent and module pom files
+# Copy pom.xml and src directory
 COPY pom.xml /app/pom.xml
-COPY complaint-service /app/complaint-service
+COPY src /app/src
 
-# Build using maven
-RUN mvn clean package -DskipTests -f /app/complaint-service/pom.xml
+# Build the Spring Boot executable jar
+RUN mvn clean package -DskipTests
 
 # Runtime stage
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
-# Copy executable jar from build stage
-COPY --from=build /app/complaint-service/target/complaint-service.jar app.jar
+# Copy compiled jar from build stage
+COPY --from=build /app/target/complaint-service.jar app.jar
 
 ENV PORT=8080
 EXPOSE 8080
